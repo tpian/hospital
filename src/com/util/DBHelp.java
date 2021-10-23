@@ -11,7 +11,8 @@ public class DBHelp {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 			String url = "jdbc:sqlserver://localhost:1433;DatabaseName=yiyuan";
 			String username = "sa";
-			String password = "yanghl";
+//			TODO ªπ‘≠√‹¬Îyanghl
+			String password = "123456";
 			conn = DriverManager.getConnection(url,username,password); 
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();

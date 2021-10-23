@@ -5,6 +5,7 @@ import java.util.Date;
 public class Patient {
 	private int id;
 	private int bed;
+	private int urgency;//紧急程度
 	private String room;
 	private String doctor;
 	private String name;//姓名
@@ -12,7 +13,13 @@ public class Patient {
 	private Date enetertime;//入院时间
 	private String section;//病人所属科室
 	private String cation;//病人状况
-
+	
+	public int getUrgency() {
+		return urgency;
+	}
+	public void setUrgency(int urgency) {
+		this.urgency = urgency;
+	}
 	public int getBed() {
 		return bed;
 	}

@@ -9,6 +9,7 @@ package com.patient;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JDesktopPane;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import com.dto.Bed;
@@ -18,6 +19,7 @@ import com.model.BedModel;
 import com.model.ComboModel;
 import com.model.EmployerModel;
 import com.model.PatientModel;
+import com.sun.org.apache.bcel.internal.generic.NEW;
 
 /**
  *
@@ -57,28 +59,30 @@ public class ManagePatient extends javax.swing.JInternalFrame {
 		searchbutton = new javax.swing.JButton();
 		jLabel9 = new javax.swing.JLabel();
 		jLabel10 = new javax.swing.JLabel();
+		urgencyLabel = new JLabel("Urgency Rate");
+		urgency = new JComboBox();
 		room = new javax.swing.JComboBox();
 		bed = new javax.swing.JComboBox();
 		cancelbutton = new javax.swing.JButton();
 		uptbutton = new javax.swing.JButton();
 		deletebutton = new javax.swing.JButton();
-		addbutton = new javax.swing.JButton();
+//		addbutton = new javax.swing.JButton();
 		search = new javax.swing.JComboBox();
 		section = new javax.swing.JComboBox();
 
-		jLabel1.setText("\u75c5\u4eba\u4fe1\u606f\u7ba1\u7406\u754c\u9762");
+		jLabel1.setText("Patient Infomation Manage");//标题
 
-		jLabel2.setText("\u59d3\u540d");
+		jLabel2.setText("Name");
 
-		jLabel3.setText("\u533b\u751f");
+		jLabel3.setText("Doctor");
 
-		jLabel4.setText("\u6027\u522b");
+		jLabel4.setText("Sex");
 
-		jLabel6.setText("\u72b6\u51b5");
+		jLabel6.setText("Situation");
 
-		jLabel7.setText("\u79d1\u5ba4");
+		jLabel7.setText("Department");
 
-		jLabel8.setText("\u5165\u9662\u65f6\u95f4");
+		jLabel8.setText("Admission time");
 		
 		//设置选择框的内容
 		ComboModel com = new ComboModel();
@@ -95,6 +99,8 @@ public class ManagePatient extends javax.swing.JInternalFrame {
 				sectionActionPerformed(evt);
 			}
 		});
+		
+		urgency.setModel(new DefaultComboBoxModel<String>(new String[] {"1","2","3","4"}));
 		
 		sex.setEditable(true);
 		sex.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "男",
@@ -117,18 +123,18 @@ public class ManagePatient extends javax.swing.JInternalFrame {
 
 		entertime.setEditable(false);
 
-		jLabel5.setText("\u6839\u636e\u75c5\u4eba\u75c5\u4f8b\u53f7\u641c\u7d22");
+		jLabel5.setText("Search by patient case number");
 
-		searchbutton.setText("\u641c\u7d22");
+		searchbutton.setText("Search");
 		searchbutton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				searchbuttonActionPerformed(evt);
 			}
 		});
 
-		jLabel9.setText("\u75c5\u623f");
+		jLabel9.setText("Room");
 
-		jLabel10.setText("\u75c5\u5e8a\u53f7");
+		jLabel10.setText("Bed");
 		//病房
 		String[] str4 = com.combo("select distinct room from bed where patientid is null ");
 		room.setModel(new javax.swing.DefaultComboBoxModel(str4));
@@ -142,33 +148,33 @@ public class ManagePatient extends javax.swing.JInternalFrame {
 		String[] str5 = com.combo("select bed from bed where room = '"+rstr+"'");
 		bed = new JComboBox(str5);
 
-		cancelbutton.setText("\u53d6\u6d88");
+		cancelbutton.setText("Cancel");
 		cancelbutton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				cancelbuttonActionPerformed(evt);
 			}
 		});
 
-		uptbutton.setText("\u4fee\u6539\u4fe1\u606f");
+		uptbutton.setText("Update Infomation");
 		uptbutton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				uptbuttonActionPerformed(evt);
 			}
 		});
 
-		deletebutton.setText("\u51fa\u9662");
+		deletebutton.setText("Check out");
 		deletebutton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				deletebuttonActionPerformed(evt);
 			}
 		});
 
-		addbutton.setText("\u5165\u9662");
-		addbutton.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				addbuttonActionPerformed(evt);
-			}
-		});
+//		addbutton.setText("Check in");
+//		addbutton.addActionListener(new java.awt.event.ActionListener() {
+//			public void actionPerformed(java.awt.event.ActionEvent evt) {
+//				addbuttonActionPerformed(evt);
+//			}
+//		});
 
 
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(
@@ -203,9 +209,9 @@ public class ManagePatient extends javax.swing.JInternalFrame {
 								layout
 										.createSequentialGroup()
 										.addGap(75, 75, 75)
-										.addComponent(addbutton)
-										.addPreferredGap(
-												javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+//										.addComponent(addbutton)
+//										.addPreferredGap(
+//												javax.swing.LayoutStyle.ComponentPlacement.RELATED)
 										.addComponent(deletebutton)
 										.addPreferredGap(
 												javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -246,6 +252,11 @@ public class ManagePatient extends javax.swing.JInternalFrame {
 																								74,
 																								Short.MAX_VALUE)
 																						.addComponent(
+																								urgencyLabel,
+																								javax.swing.GroupLayout.DEFAULT_SIZE,
+																								74,
+																								Short.MAX_VALUE)
+																						.addComponent(
 																								jLabel6))
 																		.addPreferredGap(
 																				javax.swing.LayoutStyle.ComponentPlacement.RELATED))
@@ -276,6 +287,11 @@ public class ManagePatient extends javax.swing.JInternalFrame {
 																javax.swing.GroupLayout.PREFERRED_SIZE)
 														.addComponent(
 																sex,
+																javax.swing.GroupLayout.PREFERRED_SIZE,
+																61,
+																javax.swing.GroupLayout.PREFERRED_SIZE)
+														.addComponent(
+																urgency,
 																javax.swing.GroupLayout.PREFERRED_SIZE,
 																61,
 																javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -350,11 +366,18 @@ public class ManagePatient extends javax.swing.JInternalFrame {
 														.addGroup(
 																layout
 																		.createSequentialGroup()
-																		.addComponent(
-																				name,
-																				javax.swing.GroupLayout.PREFERRED_SIZE,
-																				javax.swing.GroupLayout.DEFAULT_SIZE,
-																				javax.swing.GroupLayout.PREFERRED_SIZE)
+																		.addGroup(
+																				layout
+																				.createParallelGroup(
+																						javax.swing.GroupLayout.Alignment.LEADING)
+																				.addComponent(
+																						jLabel2)
+																				.addComponent(
+																						name,
+																						javax.swing.GroupLayout.PREFERRED_SIZE,
+																						javax.swing.GroupLayout.DEFAULT_SIZE,
+																						javax.swing.GroupLayout.PREFERRED_SIZE))
+																				
 																		.addPreferredGap(
 																				javax.swing.LayoutStyle.ComponentPlacement.RELATED,
 																				javax.swing.GroupLayout.DEFAULT_SIZE,
@@ -369,16 +392,33 @@ public class ManagePatient extends javax.swing.JInternalFrame {
 																								sex,
 																								javax.swing.GroupLayout.PREFERRED_SIZE,
 																								javax.swing.GroupLayout.DEFAULT_SIZE,
+																								javax.swing.GroupLayout.PREFERRED_SIZE))
+																		.addPreferredGap(
+																				javax.swing.LayoutStyle.ComponentPlacement.RELATED,
+																				javax.swing.GroupLayout.DEFAULT_SIZE,
+																				Short.MAX_VALUE)
+																		.addGroup(
+																				layout
+																						.createParallelGroup(
+																								javax.swing.GroupLayout.Alignment.LEADING)
+																						.addComponent(
+																								urgencyLabel)
+																						.addComponent(
+																								urgency,
+																								javax.swing.GroupLayout.PREFERRED_SIZE,
+																								javax.swing.GroupLayout.DEFAULT_SIZE,
 																								javax.swing.GroupLayout.PREFERRED_SIZE)))
-														.addGroup(
-																layout
-																		.createSequentialGroup()
-																		.addComponent(
-																				jLabel2)
-																		.addGap(
-																				33,
-																				33,
-																				33)))
+//														
+//														.addGroup(
+//																layout
+//																		.createSequentialGroup()
+//																		.addComponent(
+//																				jLabel2)
+//																		.addGap(
+//																				33,
+//																				33,
+//																				33))
+														)
 										.addGroup(
 												layout
 														.createParallelGroup(
@@ -483,8 +523,8 @@ public class ManagePatient extends javax.swing.JInternalFrame {
 																				layout
 																						.createParallelGroup(
 																								javax.swing.GroupLayout.Alignment.BASELINE)
-																						.addComponent(
-																								addbutton)
+//																						.addComponent(
+//																								addbutton)
 																						.addComponent(
 																								deletebutton)
 																						.addComponent(
@@ -525,6 +565,7 @@ public class ManagePatient extends javax.swing.JInternalFrame {
 		p.setDoctor(doctor.getSelectedItem().toString());
 		p.setSection(section.getSelectedItem().toString());
 		p.setSex(sex.getSelectedItem().toString());
+		p.setUrgency(Integer.parseInt(urgency.getSelectedItem().toString()));
 		//修改病床信息，先删床信息
 		BedModel bmodel = new BedModel();
 		Bed b = new Bed();
@@ -594,6 +635,7 @@ public class ManagePatient extends javax.swing.JInternalFrame {
 		room.setSelectedItem(p.getRoom());
 		bed.setSelectedItem(p.getBed());
 		cation.setText(p.getCation());
+		urgency.setSelectedIndex(p.getUrgency()-1);
 	}
 
 	//根据病房取得里面的床位信息
@@ -624,45 +666,45 @@ public class ManagePatient extends javax.swing.JInternalFrame {
 		// TODO add your handling code here:
 	}
 
-	private void addbuttonActionPerformed(java.awt.event.ActionEvent evt) {
-		//增加病人信息
-		if(name.getText().equals("")||cation.getText().equals("")){
-			JOptionPane.showMessageDialog(this, "请将信息填写完整");
-			return;
-		}
-		Patient p = new Patient();
-		p.setName(name.getText());
-		p.setBed(Integer.parseInt(bed.getSelectedItem().toString()));
-		p.setRoom(room.getSelectedItem().toString());
-		p.setCation(cation.getText());
-		p.setDoctor(doctor.getSelectedItem().toString());
-		p.setSection(section.getSelectedItem().toString());
-		p.setSex(sex.getSelectedItem().toString());
-		PatientModel patientmodel = new PatientModel();
-		boolean flag = patientmodel.addPatient(p);
-		if(flag){
-			//管理病房
-			BedModel bmodel = new BedModel();
-			Bed b = new Bed();
-			b.setId(p.getBed());
-			b.setPatientid(patientmodel.queryId());
-			b.setRoom(p.getRoom());
-			bmodel.uptBed(b);
-			
-			JOptionPane.showMessageDialog(this, "增加病人住院信息成功");
-			this.dispose();
-			desktop.removeAll();
-			PatientTableFrame tableframe = new PatientTableFrame();
-			desktop.add(tableframe);
-			tableframe.setVisible(true);
-		}else{
-			JOptionPane.showMessageDialog(this, "增加病人住院信息失败");
-		}
-	}
+//	private void addbuttonActionPerformed(java.awt.event.ActionEvent evt) {
+//		//增加病人信息
+//		if(name.getText().equals("")||cation.getText().equals("")){
+//			JOptionPane.showMessageDialog(this, "请将信息填写完整");
+//			return;
+//		}
+//		Patient p = new Patient();
+//		p.setName(name.getText());
+//		p.setBed(Integer.parseInt(bed.getSelectedItem().toString()));
+//		p.setRoom(room.getSelectedItem().toString());
+//		p.setCation(cation.getText());
+//		p.setDoctor(doctor.getSelectedItem().toString());
+//		p.setSection(section.getSelectedItem().toString());
+//		p.setSex(sex.getSelectedItem().toString());
+//		PatientModel patientmodel = new PatientModel();
+//		boolean flag = patientmodel.addPatient(p);
+//		if(flag){
+//			//管理病房
+//			BedModel bmodel = new BedModel();
+//			Bed b = new Bed();
+//			b.setId(p.getBed());
+//			b.setPatientid(patientmodel.queryId());
+//			b.setRoom(p.getRoom());
+//			bmodel.uptBed(b);
+//			
+//			JOptionPane.showMessageDialog(this, "增加病人住院信息成功");
+//			this.dispose();
+//			desktop.removeAll();
+//			PatientTableFrame tableframe = new PatientTableFrame();
+//			desktop.add(tableframe);
+//			tableframe.setVisible(true);
+//		}else{
+//			JOptionPane.showMessageDialog(this, "增加病人住院信息失败");
+//		}
+//	}
 
 	//GEN-BEGIN:variables
 	// Variables declaration - do not modify
-	private javax.swing.JButton addbutton;
+//	private javax.swing.JButton addbutton;
 	private javax.swing.JComboBox bed;
 	private javax.swing.JButton cancelbutton;
 	private javax.swing.JTextArea cation;
@@ -686,6 +728,8 @@ public class ManagePatient extends javax.swing.JInternalFrame {
 	private javax.swing.JButton searchbutton;
 	private javax.swing.JComboBox section;
 	private javax.swing.JComboBox sex;
+	private JLabel urgencyLabel;
+	private JComboBox urgency;
 	private javax.swing.JButton uptbutton;
 	private JDesktopPane desktop;
 	// End of variables declaration//GEN-END:variables

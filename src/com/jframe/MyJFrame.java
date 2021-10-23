@@ -18,6 +18,7 @@ import com.employer.ManageEmployer;
 import com.employer.SearchEmployer;
 import com.instrumentframe.InstrumentTableFrame;
 import com.instrumentframe.ManageInstrument;
+import com.patient.AddPatient;
 import com.patient.ManagePatient;
 import com.patient.PatientTableFrame;
 import com.salary.ManageSalary;
@@ -59,6 +60,10 @@ public class MyJFrame extends JFrame implements ActionListener {
 		String[] itemstr2 = { "管理员工信息", "管理病人信息", "管理药剂资源", "管理仪器资源", null,
 				"管理工资信息", "权限管理", };
 
+		JMenuItem menuitemPatient = new JMenuItem("Add Patient");
+		menu[1].add(menuitemPatient);
+		menuitemPatient.addActionListener(this);
+		
 		JMenuItem menuitem = new JMenuItem("添加用户");
 		menu[6].add(menuitem).setEnabled(false);
 		menuitem.addActionListener(this);
@@ -204,6 +209,10 @@ public class MyJFrame extends JFrame implements ActionListener {
 				search.setSelected(true);
 			} catch (PropertyVetoException pe) {
 			}
+		}
+		if (e.getActionCommand() == "Add Patient") {
+			AddPatient addpatient = new AddPatient(desktop);
+			desktop.add(addpatient).setVisible(true);
 		}
 	}
 }

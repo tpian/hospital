@@ -1,6 +1,7 @@
 package com.model;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,15 +20,17 @@ public class PatientModel {
 		PreparedStatement pst = null;
 		try {
 			conn = DBHelp.getConnection();
-			String sql = "insert into patient(room,name,sex,entertime,doctor,section,cation,bed) values (?,?,?,getdate(),?,?,?,?)";
+			String sql = "insert into patient(room,name,sex,entertime,doctor,section,cation,bed,urgency) values (?,?,?,?,?,?,?,?,?)";
 			pst = conn.prepareStatement(sql);
 			pst.setString(1, p.getRoom());
 			pst.setString(2, p.getName());
 			pst.setString(3, p.getSex());
-			pst.setString(4, p.getDoctor());
-			pst.setString(5, p.getSection());
-			pst.setString(6, p.getCation());
-			pst.setInt(7, p.getBed());
+			pst.setDate(4, new Date(p.getEnetertime().getTime()));
+			pst.setString(5, p.getDoctor());
+			pst.setString(6, p.getSection());
+			pst.setString(7, p.getCation());
+			pst.setInt(8, p.getBed());
+			pst.setInt(9, p.getUrgency());
 
 
 			if (pst.executeUpdate() > 0) {
@@ -45,7 +48,7 @@ public class PatientModel {
 	//根据id查找病人
 	public Patient queryOne(int id) {
 		Patient p = new Patient();
-		String sql = "select id,name,sex,doctor,section,entertime,room,bed,cation from patient where id="+id;
+		String sql = "select id,name,sex,doctor,section,entertime,room,bed,cation,urgency from patient where id="+id;
 		PreparedStatement pst = null;
 		Connection conn = null;
 		ResultSet rs = null;
@@ -63,7 +66,7 @@ public class PatientModel {
 				p.setRoom(rs.getString(7));
 				p.setBed(rs.getShort(8));
 				p.setCation(rs.getString(9));
-
+				p.setUrgency(rs.getInt(10));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
