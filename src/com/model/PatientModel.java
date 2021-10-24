@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 
 import com.dto.Employer;
 import com.dto.Instrument;
@@ -25,7 +26,7 @@ public class PatientModel {
 			pst.setString(1, p.getRoom());
 			pst.setString(2, p.getName());
 			pst.setString(3, p.getSex());
-			pst.setDate(4, new Date(p.getEnetertime().getTime()));
+			pst.setTimestamp(4, new Timestamp(p.getEnetertime().getTime()));
 			pst.setString(5, p.getDoctor());
 			pst.setString(6, p.getSection());
 			pst.setString(7, p.getCation());
@@ -45,6 +46,28 @@ public class PatientModel {
 		}
 		return flag;
 	}
+	
+//	查找最紧急，入院最久病人的id
+	public int queryMostUrgentPatientId() {
+		String sql = "select id from patient order by urgency desc,entertime asc;";
+		Connection conn = DBHelp.getConnection();
+		PreparedStatement pst = null;
+		ResultSet rs = null;
+		int i = 0;
+		try {
+			pst = conn.prepareStatement(sql);
+			rs = pst.executeQuery();
+			while (rs.next()) {
+				i = rs.getInt(1);	
+				break;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+ 		return i;
+	}
+	
 	//根据id查找病人
 	public Patient queryOne(int id) {
 		Patient p = new Patient();

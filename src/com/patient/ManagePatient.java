@@ -168,6 +168,9 @@ public class ManagePatient extends javax.swing.JInternalFrame {
 				deletebuttonActionPerformed(evt);
 			}
 		});
+		
+//		获取最紧急且入院时间最久的病人
+		getInitPatient();
 
 //		addbutton.setText("Check in");
 //		addbutton.addActionListener(new java.awt.event.ActionListener() {
@@ -540,6 +543,7 @@ public class ManagePatient extends javax.swing.JInternalFrame {
 
 		pack();
 	}// </editor-fold>
+
 	//GEN-END:initComponents
 
 	private void cancelbuttonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -609,10 +613,11 @@ public class ManagePatient extends javax.swing.JInternalFrame {
 			boolean flag = em.DelPatient(r);
 			if (flag) {
 				JOptionPane.showMessageDialog(this, "恭喜出院，祝您健康");
-				desktop.removeAll();
-				PatientTableFrame tableframe = new PatientTableFrame();
-				desktop.add(tableframe);
-				tableframe.setVisible(true);
+				this.getInitPatient();
+//				desktop.removeAll();
+//				PatientTableFrame tableframe = new PatientTableFrame();
+//				desktop.add(tableframe);
+//				tableframe.setVisible(true);
 			} else {
 				JOptionPane.showMessageDialog(this, "删除信息失败");
 			}
@@ -621,12 +626,17 @@ public class ManagePatient extends javax.swing.JInternalFrame {
 //查找某病人
 	private void searchbuttonActionPerformed(java.awt.event.ActionEvent evt) {
 		int id = Integer.parseInt(search.getSelectedItem().toString());
+		getPatientById(id);
+	}
+	
+	private void getPatientById(int id) {
 		PatientModel pmodel = new PatientModel();
 		Patient p = pmodel.queryOne(id);
 		if(p.getName()==null){
 			JOptionPane.showMessageDialog(this, "查无此病人信息");
 			return;
 		}
+		search.setSelectedItem(new String(""+p.getId()));
 		name.setText(p.getName());
 		sex.setSelectedItem(p.getSex());
 		section.setSelectedItem(p.getSection());
@@ -636,6 +646,17 @@ public class ManagePatient extends javax.swing.JInternalFrame {
 		bed.setSelectedItem(p.getBed());
 		cation.setText(p.getCation());
 		urgency.setSelectedIndex(p.getUrgency()-1);
+	}
+	
+//	默认病人，最紧急，入院最久
+	private void getInitPatient() {
+		PatientModel pmodel = new PatientModel();
+		int id = pmodel.queryMostUrgentPatientId();
+		if (id == 0) {
+			return;
+		}else {
+			getPatientById(id);
+		}
 	}
 
 	//根据病房取得里面的床位信息

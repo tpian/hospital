@@ -36,7 +36,7 @@ public class Title {
 		return title;
 	}
 	public static Vector patienttitle(){
-		String[] names = { "病例号", "姓名", "性别", "主治医生", "所属科室","入院时间","病房","病床","症状"};
+		String[] names = { "病例号", "姓名", "性别", "紧急程度","主治医生", "所属科室","入院时间","病房","病床","症状"};
 		Vector title = new Vector();
 		title.add(names[0]);
 		title.add(names[1]);
@@ -47,6 +47,7 @@ public class Title {
 		title.add(names[6]);
 		title.add(names[7]);
 		title.add(names[8]);
+		title.add(names[9]);
 		return title;
 	}	
 	

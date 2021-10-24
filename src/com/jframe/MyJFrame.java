@@ -57,7 +57,7 @@ public class MyJFrame extends JFrame implements ActionListener {
 			menuitems[i].addActionListener(this);
 			menu[i].add(menuitems[i]);
 		}
-		String[] itemstr2 = { "管理员工信息", "管理病人信息", "管理药剂资源", "管理仪器资源", null,
+		String[] itemstr2 = { "管理员工信息", "管理病人信息", "管理药剂资源", "管理仪器资源", "Bed Manage",
 				"管理工资信息", "权限管理", };
 
 		JMenuItem menuitemPatient = new JMenuItem("Add Patient");
@@ -175,7 +175,7 @@ public class MyJFrame extends JFrame implements ActionListener {
 			} catch (PropertyVetoException pe) {
 			}
 		}
-		if (e.getActionCommand() == "管理病床") {
+		if (e.getActionCommand() == "Bed Manage") {
 
 		}
 		if (e.getActionCommand() == "添加用户") {
