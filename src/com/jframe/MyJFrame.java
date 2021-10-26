@@ -9,20 +9,16 @@ import javax.swing.*;
 import com.adminframe.AddAdmin;
 import com.adminframe.AdminFrame;
 import com.adminframe.ManageAdmin;
+import com.bed.AddBed;
 import com.bed.BedTableFrame;
-import com.drugframe.DrugTableFrame;
-import com.drugframe.ManageDrug;
+import com.bed.ManageBed;
 import com.dto.Admin;
 import com.employer.EmployerTableFrame;
 import com.employer.ManageEmployer;
 import com.employer.SearchEmployer;
-import com.instrumentframe.InstrumentTableFrame;
-import com.instrumentframe.ManageInstrument;
 import com.patient.AddPatient;
 import com.patient.ManagePatient;
 import com.patient.PatientTableFrame;
-import com.salary.ManageSalary;
-import com.salary.SalaryTableFrame;
 
 public class MyJFrame extends JFrame implements ActionListener {
 	private JMenuBar menubar;
@@ -41,37 +37,38 @@ public class MyJFrame extends JFrame implements ActionListener {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {
 		}
-		String[] menustr = { "员工信息管理", "病人信息管理", "药剂资源管理", "仪器资源管理", "病床管理",
-				"员工工资管理", "用户权限管理" };
+		String[] menustr = { "Employee Manage ", "Patient Manage ",  "Bed Manage ", "User Permission Manage" };
 		menu = new JMenu[menustr.length];
 		for (int i = 0; i < menustr.length; i++) {
 			menu[i] = new JMenu(menustr[i]);
 			menubar.add(menu[i]);
 		}
 
-		String[] itemstr = { "查看员工信息", "查看病人信息", "查看药剂资源", "查看仪器资源", "查看病床",
-				"查看工资", "修改信息", };
+		String[] itemstr = { "All Employees", "All Patients", "All Beds", "Update User" };
 		JMenuItem[] menuitems = new JMenuItem[itemstr.length];
 		for (int i = 0; i < itemstr.length; i++) {
 			menuitems[i] = new JMenuItem(itemstr[i]);
 			menuitems[i].addActionListener(this);
 			menu[i].add(menuitems[i]);
 		}
-		String[] itemstr2 = { "管理员工信息", "管理病人信息", "管理药剂资源", "管理仪器资源", "Bed Manage",
-				"管理工资信息", "权限管理", };
 
 		JMenuItem menuitemPatient = new JMenuItem("Add Patient");
 		menu[1].add(menuitemPatient);
 		menuitemPatient.addActionListener(this);
 		
-		JMenuItem menuitem = new JMenuItem("添加用户");
-		menu[6].add(menuitem).setEnabled(false);
+		JMenuItem menuitem = new JMenuItem("Add User");
+		menu[3].add(menuitem).setEnabled(false);
 		menuitem.addActionListener(this);
 		
-		JMenuItem menuitem2 = new JMenuItem("查询员工信息");
+		JMenuItem menuitemBed = new JMenuItem("Add Bed");
+		menu[2].add(menuitemBed);
+		menuitemBed.addActionListener(this);
+		
+		JMenuItem menuitem2 = new JMenuItem("Query Employee");
 		menu[0].add(menuitem2);
 		menuitem2.addActionListener(this);
 		
+		String[] itemstr2 = { "Manage Employee", "Manage Patient","Manage Bed", "Manage Permission" };
 		JMenuItem[] menuitems2 = new JMenuItem[itemstr2.length];
 		for (int i = 0; i < itemstr2.length; i++) {
 			menuitems2[i] = new JMenuItem(itemstr2[i]);
@@ -97,44 +94,25 @@ public class MyJFrame extends JFrame implements ActionListener {
 	// }
 
 	public void actionPerformed(ActionEvent e) {
-		if (e.getActionCommand() == "查看员工信息") {
+		if (e.getActionCommand() == "All Employees") {
 			desktop.removeAll();
 			EmployerTableFrame tableframe = new EmployerTableFrame();
 			desktop.add(tableframe);
 			tableframe.setVisible(true);
 		}
-		if (e.getActionCommand() == "查看病人信息") {
+		if (e.getActionCommand() == "All Patients") {
 			desktop.removeAll();
 			PatientTableFrame tableframe = new PatientTableFrame();
 			desktop.add(tableframe);
 			tableframe.setVisible(true);
 		}
-		if (e.getActionCommand() == "查看药剂资源") {
-			desktop.removeAll();
-			DrugTableFrame tableframe = new DrugTableFrame();
-			desktop.add(tableframe);
-			tableframe.setVisible(true);
-		}
-		if (e.getActionCommand() == "查看仪器资源") {
-			desktop.removeAll();
-			InstrumentTableFrame tableframe = new InstrumentTableFrame();
-			desktop.add(tableframe);
-			tableframe.setVisible(true);
-		}
-		if (e.getActionCommand() == "查看病床") {
+		if (e.getActionCommand() == "All Beds") {
 			desktop.removeAll();
 			BedTableFrame tableframe = new BedTableFrame();
 			desktop.add(tableframe);
 			tableframe.setVisible(true);
 		}
-		if (e.getActionCommand() == "查看工资") {
-			desktop.removeAll();
-			SalaryTableFrame tableframe = new SalaryTableFrame();
-			desktop.add(tableframe);
-			tableframe.setVisible(true);
-		}
-
-		if (e.getActionCommand() == "管理员工信息") {
+		if (e.getActionCommand() == "Manage Employee") {
 			ManageEmployer addpatient = new ManageEmployer(desktop);
 			desktop.add(addpatient).setVisible(true);
 			try {
@@ -142,7 +120,7 @@ public class MyJFrame extends JFrame implements ActionListener {
 			} catch (PropertyVetoException pe) {
 			}
 		}
-		if (e.getActionCommand() == "管理病人信息") {
+		if (e.getActionCommand() == "Manage Patient") {
 			ManagePatient addpatient = new ManagePatient(desktop);
 			desktop.add(addpatient).setVisible(true);
 			try {
@@ -150,35 +128,23 @@ public class MyJFrame extends JFrame implements ActionListener {
 			} catch (PropertyVetoException pe) {
 			}
 		}
-		if (e.getActionCommand() == "管理药剂资源") {
-			ManageDrug manage = new ManageDrug(desktop);
-			desktop.add(manage).setVisible(true);
+		if (e.getActionCommand() == "Manage Bed") {
+			ManageBed manageBed = new ManageBed(desktop);
+			desktop.add(manageBed).setVisible(true);
 			try {
-				manage.setSelected(true);
+				manageBed.setSelected(true);
 			} catch (PropertyVetoException pe) {
 			}
 		}
-		if (e.getActionCommand() == "管理仪器资源") {
-			ManageInstrument add = new ManageInstrument(desktop);
-			desktop.add(add).setVisible(true);
+		if (e.getActionCommand() == "Add Bed") {
+			AddBed addBed = new AddBed(desktop);
+			desktop.add(addBed).setVisible(true);
 			try {
-				add.setSelected(true);
+				addBed.setSelected(true);
 			} catch (PropertyVetoException pe) {
 			}
 		}
-
-		if (e.getActionCommand() == "管理工资信息") {
-			ManageSalary msalary = new ManageSalary(desktop);
-			desktop.add(msalary).setVisible(true);
-			try {
-				msalary.setSelected(true);
-			} catch (PropertyVetoException pe) {
-			}
-		}
-		if (e.getActionCommand() == "Bed Manage") {
-
-		}
-		if (e.getActionCommand() == "添加用户") {
+		if (e.getActionCommand() == "Add User") {
 			AddAdmin addadmin = new AddAdmin(desktop);
 			desktop.add(addadmin).setVisible(true);
 			try {
@@ -186,7 +152,7 @@ public class MyJFrame extends JFrame implements ActionListener {
 			} catch (PropertyVetoException pe) {
 			}
 		}
-		if (e.getActionCommand() == "修改信息") {
+		if (e.getActionCommand() == "Update User") {
 			AdminFrame adminframe = new AdminFrame(admin);
 			desktop.add(adminframe).setVisible(true);
 			try {
@@ -194,7 +160,7 @@ public class MyJFrame extends JFrame implements ActionListener {
 			} catch (PropertyVetoException pe) {
 			}
 		}
-		if (e.getActionCommand() == "权限管理") {
+		if (e.getActionCommand() == "User Permission Manage") {
 			ManageAdmin manage = new ManageAdmin();
 			desktop.add(manage).setVisible(true);
 			try {
@@ -202,7 +168,7 @@ public class MyJFrame extends JFrame implements ActionListener {
 			} catch (PropertyVetoException pe) {
 			}
 		}		
-		if (e.getActionCommand() == "查询员工信息") {
+		if (e.getActionCommand() == "Query Employee") {
 			SearchEmployer search = new SearchEmployer();
 			desktop.add(search).setVisible(true);
 			try {

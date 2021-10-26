@@ -90,6 +90,7 @@ public class AddPatient extends JInternalFrame {
 		infoBox = new JPanel();
 		jScrollPane1 = new javax.swing.JScrollPane(cation);
 		jScrollPane1.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		
 		GridBagLayout gridBag = new GridBagLayout();
 		infoBox.setLayout(gridBag);
 		GridBagConstraints ctitle = new GridBagConstraints();
