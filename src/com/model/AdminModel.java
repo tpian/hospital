@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.dto.Admin;
-import com.dto.Drug;
 import com.util.DBHelp;
 
 public class AdminModel {

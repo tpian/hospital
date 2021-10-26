@@ -5,9 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.dto.Drug;
 import com.dto.Employer;
-import com.dto.Instrument;
 import com.util.DBHelp;
 import com.util.StringHelp;
 

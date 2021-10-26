@@ -6,6 +6,8 @@
 
 package com.adminframe;
 
+import java.awt.Font;
+
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 
@@ -45,27 +47,28 @@ public class AddAdmin extends javax.swing.JInternalFrame {
 		jButton1 = new javax.swing.JButton();
 		jButton2 = new javax.swing.JButton();
 
-		jLabel1.setText("\u589e\u52a0\u7528\u6237");
+		jLabel1.setText("Add User");
+		jLabel1.setFont(new Font( "Myriad", 0, 18));
 
-		jLabel2.setText("\u7528\u6237\u540d");
+		jLabel2.setText("Username");
 
-		jLabel3.setText("\u5bc6\u7801");
+		jLabel3.setText("Password");
 
-		jLabel4.setText("\u786e\u8ba4\u5bc6\u7801");
+		jLabel4.setText("Comfirm Password");
 
-		jLabel5.setText("\u7528\u6237\u6743\u9650");
+		jLabel5.setText("User Role");
 
 		power.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
 				"管理员", "普通用户" }));
 
-		jButton1.setText("\u6dfb\u52a0");
+		jButton1.setText("Add");
 		jButton1.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jButton1ActionPerformed(evt);
 			}
 		});
 
-		jButton2.setText("\u53d6\u6d88");
+		jButton2.setText("Cancel");
 		jButton2.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jButton2ActionPerformed(evt);
@@ -238,11 +241,11 @@ public class AddAdmin extends javax.swing.JInternalFrame {
 	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
 		if (name.getText().equals("") || password1.getText().equals("")
 				|| password2.getText().equals("")) {
-			JOptionPane.showMessageDialog(this, "请将信息填写完整");
+			JOptionPane.showMessageDialog(this, "Please fill the information completely!");
 			return;
 		}
 		if (!password1.getText().equals(password2.getText())) {
-			JOptionPane.showMessageDialog(this, "密码不一致");
+			JOptionPane.showMessageDialog(this, "Passwords are not the same!");
 			return;
 		}
 		AdminModel am = new AdminModel();
@@ -251,14 +254,14 @@ public class AddAdmin extends javax.swing.JInternalFrame {
 		admin.setPassword(password1.getText());
 		admin.setPower(power.getSelectedItem().toString());
 		if (am.addAdmin(admin)) {
-			JOptionPane.showMessageDialog(this, "添加用户成功");
+			JOptionPane.showMessageDialog(this, "Add Succeed!");
 			this.dispose();
 			desktop.removeAll();
 			ManageAdmin manageadmin = new ManageAdmin();
 			desktop.add(manageadmin);
 			manageadmin.setVisible(true);
 		} else {
-			JOptionPane.showMessageDialog(this, "添加用户失败");
+			JOptionPane.showMessageDialog(this, "Add Failed!");
 		}
 	}
 

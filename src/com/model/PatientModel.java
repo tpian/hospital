@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 
 import com.dto.Employer;
-import com.dto.Instrument;
 import com.dto.Patient;
 import com.util.DBHelp;
 import com.util.StringHelp;

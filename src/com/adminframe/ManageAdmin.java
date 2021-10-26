@@ -6,6 +6,7 @@
 
 package com.adminframe;
 
+import java.awt.Font;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Vector;
@@ -53,14 +54,15 @@ public class ManageAdmin extends javax.swing.JInternalFrame implements
 		adminid = new javax.swing.JTextField();
 		jLabel4 = new javax.swing.JLabel();
 
-		jLabel1.setText("\u7ba1\u7406\u7528\u6237");
+		jLabel1.setText("Manage User");
+		jLabel1.setFont(new Font( "Myriad", 0, 18));
 
 		power.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
 				"管理员", "普通用户" }));
 
-		jLabel2.setText("\u767b\u5f55\u540d");
+		jLabel2.setText("Username");
 
-		jLabel3.setText("用户权限");
+		jLabel3.setText("User Role");
 
 		// 表格
 
@@ -73,21 +75,21 @@ public class ManageAdmin extends javax.swing.JInternalFrame implements
 
 		jScrollPane1.setViewportView(jScrollPane2);
 
-		jButton2.setText("\u5220\u9664");
+		jButton2.setText("Delete");
 		jButton2.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jButton2ActionPerformed(evt);
 			}
 		});
 
-		jButton3.setText("\u53d6\u6d88");
+		jButton3.setText("Cancel");
 		jButton3.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jButton3ActionPerformed(evt);
 			}
 		});
 
-		jButton4.setText("\u4fee\u6539");
+		jButton4.setText("Update");
 		jButton4.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jButton4ActionPerformed(evt);
@@ -96,7 +98,7 @@ public class ManageAdmin extends javax.swing.JInternalFrame implements
 
 		adminid.setEnabled(false);
 		name.setEditable(false);
-		jLabel4.setText("\u7f16\u53f7");
+		jLabel4.setText("Id");
 
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(
 				getContentPane());
@@ -248,13 +250,13 @@ public class ManageAdmin extends javax.swing.JInternalFrame implements
 	// 修改
 	private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {
 		if (name.getText() == null) {
-			JOptionPane.showMessageDialog(this, "请选择用户");
+			JOptionPane.showMessageDialog(this, "Please select a user!");
 			return;
 		}
 		int id = Integer.parseInt(adminid.getText());
 		AdminModel amodel = new AdminModel();
 		if (amodel.queryOne(id) == null) {
-			JOptionPane.showMessageDialog(this, "查无此用户");
+			JOptionPane.showMessageDialog(this, "There is not such a user!");
 			return;
 		}
 		Admin ad = new Admin();
@@ -264,33 +266,33 @@ public class ManageAdmin extends javax.swing.JInternalFrame implements
 		if (flag) {
 			TableModel tmodel = new TableModel();
 			table.setDataVector(tmodel.query(sql, 3), Title.admintitle());
-			JOptionPane.showMessageDialog(this, "修改权限成功");
+			JOptionPane.showMessageDialog(this, "Update Succeed!");
 		}else{
-			JOptionPane.showMessageDialog(this, "修改权限失败");
+			JOptionPane.showMessageDialog(this, "Update Failed!");
 		}
 	}
 
 	// 删除
 	private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
 		if (name.getText() == null) {
-			JOptionPane.showMessageDialog(this, "请选择用户");
+			JOptionPane.showMessageDialog(this, "Please select a user!");
 			return;
 		}
 		int id = Integer.parseInt(adminid.getText());
 		AdminModel amodel = new AdminModel();
 		if (amodel.queryOne(id) == null) {
-			JOptionPane.showMessageDialog(this, "查无此用户");
+			JOptionPane.showMessageDialog(this, "There is not such a user!");
 			return;
 		}
-		int i = JOptionPane.showConfirmDialog(this, "确定删除该用户？");
+		int i = JOptionPane.showConfirmDialog(this, "Are you sure to delete the user you selected？");
 		if (i == 0) {
 			boolean flag = amodel.DelAdmin(id);
 			if (flag) {
-				JOptionPane.showMessageDialog(this, "删除用户成功");
+				JOptionPane.showMessageDialog(this, "Delete Succeed!");
 				TableModel tmodel = new TableModel();
 				table.setDataVector(tmodel.query(sql, 3), Title.admintitle());
 			} else {
-				JOptionPane.showMessageDialog(this, "删除用户失败");
+				JOptionPane.showMessageDialog(this, "Delete Failed!");
 			}
 		}
 	}

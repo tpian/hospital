@@ -6,6 +6,8 @@
 
 package com.employer;
 
+import java.awt.Font;
+
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 
@@ -68,40 +70,40 @@ public class ManageEmployer extends javax.swing.JInternalFrame {
 		jLabel16 = new javax.swing.JLabel();
 		search = new javax.swing.JComboBox();
 
-		jLabel1.setText("\u5458\u5de5\u53f7");
+		jLabel1.setText("Id");
 
-		jLabel2.setText("\u5458\u5de5\u59d3\u540d");
+		jLabel2.setText("Name");
 
-		jLabel5.setText("\u6240\u5728\u90e8\u95e8");
+		jLabel5.setText("Department");
 
 		ComboModel cm = new ComboModel();
 		String[] str = cm.combo("select name from dept");
 
 		dept.setModel(new javax.swing.DefaultComboBoxModel(str));
 
-		jLabel4.setText("\u8eab\u4efd\u8bc1\u53f7\u7801");
+		jLabel4.setText("Identification number");
 
-		jLabel6.setText("\u751f\u65e5");
+		jLabel6.setText("Birthday");
 
-		jLabel7.setText("\u7c4d\u8d2f");
+		jLabel7.setText("Hometown");
 
 		origo.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
 				"江苏", "上海", "浙江" }));
 
-		jLabel8.setText("\u56fd\u7c4d");
+		jLabel8.setText("Citizenship");
 
 		nationality.setModel(new javax.swing.DefaultComboBoxModel(
 				new String[] { "中国" }));
 
-		jLabel9.setText("\u6c11\u65cf");
+		jLabel9.setText("Nationality");
 
-		jLabel10.setText("\u5a5a\u59fb\u72b6\u51b5");
+		jLabel10.setText("Marital Status");
 
-		jLabel12.setText("\u5065\u5eb7\u72b6\u51b5");
+		jLabel12.setText("Healthy Status");
 
-		jLabel13.setText("\u8054\u7cfb\u7535\u8bdd");
+		jLabel13.setText("Telephone");
 
-		jLabel14.setText("\u5bb6\u5ead\u4f4f\u5740");
+		jLabel14.setText("Home Address");
 
 		nation.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
 				"汉族", "苗族", "满族" }));
@@ -112,41 +114,42 @@ public class ManageEmployer extends javax.swing.JInternalFrame {
 		health.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
 				"很好", "一般", "较差" }));
 
-		jLabel11.setText("\u53c2\u52a0\u5de5\u4f5c\u65f6\u95f4");
+		jLabel11.setText("Time of starting work");
 
-		jLabel15.setText("\u6027\u522b");
+		jLabel15.setText("Sex");
 
-		addbutton.setText("\u6dfb\u52a0");
+		addbutton.setText("Add");
+		//TODO 去掉添加
 		addbutton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				addbuttonActionPerformed(evt);
 			}
 		});
 
-		cancelbutton.setText("\u53d6\u6d88");
+		cancelbutton.setText("Cancel");
 		cancelbutton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				cancelbuttonActionPerformed(evt);
 			}
 		});
 
-		uptbutton.setText("\u4fee\u6539");
+		uptbutton.setText("Update");
 		uptbutton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				uptbuttonActionPerformed(evt);
 			}
 		});
 
-		deletebutton.setText("\u5220\u9664");
+		deletebutton.setText("Delete");
 		deletebutton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				deletebuttonActionPerformed(evt);
 			}
 		});
 
-		jLabel3.setText("\u6839\u636e\u5458\u5de5\u53f7\u67e5\u8be2");
+		jLabel3.setText("Query Employer by Id");
 
-		searchbutton.setText("\u641c\u7d22");
+		searchbutton.setText("Search");
 		searchbutton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				searchbuttonActionPerformed(evt);
@@ -161,8 +164,8 @@ public class ManageEmployer extends javax.swing.JInternalFrame {
 			}
 		});
 
-		jLabel16.setFont(new java.awt.Font("幼圆", 0, 18));
-		jLabel16.setText("\u5458\u5de5\u4fe1\u606f\u7ba1\u7406\u754c\u9762");
+		jLabel16.setFont(new Font( "Myriad", 0, 18));
+		jLabel16.setText("Employer Information Manage");
 		search.setEditable(true);
 		// 设置员工工号
 		String[] str2 = cm.combo("select id from employer");
@@ -645,18 +648,18 @@ public class ManageEmployer extends javax.swing.JInternalFrame {
 	// 删除员工信息
 	private void deletebuttonActionPerformed(java.awt.event.ActionEvent evt) {
 		String r = search.getSelectedItem().toString();
-		int yes = JOptionPane.showConfirmDialog(null, "确定删除'" + r + "'号员工？");
+		int yes = JOptionPane.showConfirmDialog(null, "Are you sure to delete the employer with the id'" + r + "'？");
 		if (yes == 0) {
 			EmployerModel em = new EmployerModel();
 			boolean flag = em.DelEmployer(r);
 			if (flag) {
-				JOptionPane.showMessageDialog(this, "删除成功");
+				JOptionPane.showMessageDialog(this, "Delete Succeed!");
 				desktop.removeAll();
 				EmployerTableFrame tableframe = new EmployerTableFrame();
 				desktop.add(tableframe);
 				tableframe.setVisible(true);
 			} else {
-				JOptionPane.showMessageDialog(this, "删除失败");
+				JOptionPane.showMessageDialog(this, "Delete Failed!");
 			}
 		}
 	}
@@ -667,7 +670,7 @@ public class ManageEmployer extends javax.swing.JInternalFrame {
 				|| idcard.getText().equals("") || birthday.getText().equals("")
 				|| worktime.getText().equals("")
 				|| address.getText().equals("") || tel.getText().equals("")) {
-			JOptionPane.showMessageDialog(this, "请将信息填写完整");
+			JOptionPane.showMessageDialog(this, "Please fill the information completely!");
 			return;
 		}
 		EmployerModel em = new EmployerModel();
@@ -691,16 +694,16 @@ public class ManageEmployer extends javax.swing.JInternalFrame {
 			boolean flag = em.uptemployer(e, id.getText());
 			if (flag) {
 				this.dispose();
-				JOptionPane.showMessageDialog(this, "修改成功");
+				JOptionPane.showMessageDialog(this, "Update Succeed!");
 				desktop.removeAll();
 				EmployerTableFrame tableframe = new EmployerTableFrame();
 				desktop.add(tableframe);
 				tableframe.setVisible(true);
 			} else {
-				JOptionPane.showMessageDialog(this, "修改失败");
+				JOptionPane.showMessageDialog(this, "Update Failed!");
 			}
 		} else {
-			JOptionPane.showMessageDialog(this, "该员工已存在");
+			JOptionPane.showMessageDialog(this, "The employer has already existed!");
 			return;
 		}
 	}
@@ -711,12 +714,12 @@ public class ManageEmployer extends javax.swing.JInternalFrame {
 				|| idcard.getText().equals("") || birthday.getText().equals("")
 				|| worktime.getText().equals("")
 				|| address.getText().equals("") || tel.getText().equals("")) {
-			JOptionPane.showMessageDialog(this, "请将信息填写完整");
+			JOptionPane.showMessageDialog(this, "Please fill the information completely!");
 			return;
 		}
 		EmployerModel em = new EmployerModel();
 		if (em.queryOne(id.getText()).getAddress() != null) {
-			JOptionPane.showMessageDialog(this, "该员工已存在");
+			JOptionPane.showMessageDialog(this, "The employer has already existed!");
 			return;
 		}
 		Employer e = new Employer();
@@ -741,9 +744,9 @@ public class ManageEmployer extends javax.swing.JInternalFrame {
 			EmployerTableFrame tableframe = new EmployerTableFrame();
 			desktop.add(tableframe);
 			tableframe.setVisible(true);
-			JOptionPane.showMessageDialog(this, "添加成功");
+			JOptionPane.showMessageDialog(this, "Add Succeed!");
 		} else {
-			JOptionPane.showMessageDialog(this, "添加失败");
+			JOptionPane.showMessageDialog(this, "Add Failed!");
 		}
 	}
 

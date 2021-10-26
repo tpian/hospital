@@ -1,5 +1,6 @@
 package com.bed;
 
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -53,6 +54,7 @@ public class ManageBed extends JInternalFrame{
 		com = new ComboModel();
 		
 		titleLabel = new JLabel("Manage Bed");
+		titleLabel.setFont(new Font( "Myriad", 0, 18));
 		roomLabel = new JLabel("Room");
 		bedLabel = new JLabel("Bed");
 		patientLabel = new JLabel("patient case");
@@ -118,7 +120,7 @@ public class ManageBed extends JInternalFrame{
 		ctitle.fill = GridBagConstraints.BOTH;
 		ctitle.weightx = 3.0;
 //		ctitle.weighty = 2.0;
-		ctitle.insets = new Insets(10, 200, 15, 0);
+		ctitle.insets = new Insets(10, 350, 15, 0);
 		GridBagConstraints clabel = new GridBagConstraints();
 		clabel.anchor = GridBagConstraints.WEST;
 		clabel.fill = GridBagConstraints.BOTH;

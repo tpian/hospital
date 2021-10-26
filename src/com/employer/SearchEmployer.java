@@ -6,9 +6,11 @@
 
 package com.employer;
 
+import java.awt.Font;
 import java.util.Vector;
 
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 
 import com.dto.Title;
@@ -46,34 +48,35 @@ public class SearchEmployer extends javax.swing.JInternalFrame {
 		jLabel5 = new javax.swing.JLabel();
 		jButton1 = new javax.swing.JButton();
 
-		jLabel1.setFont(new java.awt.Font("宋体", 0, 18));
-		jLabel1.setText("\u67e5\u627e\u5458\u5de5\u4fe1\u606f");
+		jLabel1.setFont(new Font( "Myriad", 0, 18));
+		jLabel1.setText("Query Employer");
 
-		searchbutton1.setText("\u5355\u9879\u6761\u4ef6\u67e5\u8be2");
+		searchbutton1.setText("Query Department");
 		searchbutton1.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				searchbutton1ActionPerformed(evt);
 			}
 		});
 
-		searchbutton3.setText("\u6a21\u7cca\u6761\u4ef6\u67e5\u8be2");
+		searchbutton3.setText("Query Name");
 		searchbutton3.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				searchbutton3ActionPerformed(evt);
 			}
 		});
 		
-		jLabel2.setText("\u59d3\u540d");
+		jLabel2.setText("Name");
 
 		String sql = "select * from employer";
 		Vector vec= tm.query(sql, 14);
 		table = new DefaultTableModel(vec,Title.employertitle());
 		jtable.setModel(table);
 		jScrollPane1.setViewportView(jtable);
+		jScrollPane1.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 
-		jLabel3.setText("\u79d1\u5ba4");
+		jLabel3.setText("Department");
 
-		searchbutton4.setText("\u7ec4\u5408\u6761\u4ef6\u67e5\u8be2");
+		searchbutton4.setText("Multiple Query");
 		searchbutton4.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				searchbutton4ActionPerformed(evt);
@@ -83,11 +86,11 @@ public class SearchEmployer extends javax.swing.JInternalFrame {
 		jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
 				"OR", "AND" }));
 
-		jLabel4.setText("\u79d1\u5ba4");
+		jLabel4.setText("Department");
 
-		jLabel5.setText("\u7c4d\u8d2f");
+		jLabel5.setText("Hometown");
 
-		jButton1.setText("\u5237\u65b0");
+		jButton1.setText("Refresh");
 		jButton1.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jButton1ActionPerformed(evt);
@@ -186,7 +189,7 @@ public class SearchEmployer extends javax.swing.JInternalFrame {
 																				searchbutton3)))
 										.addContainerGap(234, Short.MAX_VALUE))
 						.addGroup(
-								javax.swing.GroupLayout.Alignment.TRAILING,
+								javax.swing.GroupLayout.Alignment.CENTER,
 								layout.createSequentialGroup().addContainerGap(
 										417, Short.MAX_VALUE).addComponent(
 										jLabel1).addGap(409, 409, 409)));
@@ -292,7 +295,7 @@ public class SearchEmployer extends javax.swing.JInternalFrame {
 	//单项条件查询
 	private void searchbutton1ActionPerformed(java.awt.event.ActionEvent evt) {
 		if (section.getText().equals("")) {
-			JOptionPane.showMessageDialog(this, "请输入科室名称");
+			JOptionPane.showMessageDialog(this, "Please input the name of the department!");
 			return;
 		}
 		String sql = "select * from employer where dept = '"

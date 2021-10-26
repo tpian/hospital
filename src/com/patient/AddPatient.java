@@ -1,6 +1,7 @@
 package com.patient;
 
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -67,6 +68,7 @@ public class AddPatient extends JInternalFrame {
 		com = new ComboModel();
 		
 		titleLabel = new javax.swing.JLabel("Patient Infomation Add");
+		titleLabel.setFont(new Font( "Myriad", 0, 18));
 		nameLabel = new javax.swing.JLabel("Name");
 		sexLabel = new javax.swing.JLabel("Sex");
 		uegencyLabel = new JLabel("Urgency Rate");

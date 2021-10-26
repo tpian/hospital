@@ -6,6 +6,8 @@
 
 package com.jframe;
 
+import java.awt.Font;
+
 import javax.swing.JOptionPane;
 
 import com.dto.Admin;
@@ -34,7 +36,9 @@ public class loginjframe extends javax.swing.JFrame {
 		jLabel1 = new javax.swing.JLabel();
 		jLabel2 = new javax.swing.JLabel();
 		name = new javax.swing.JTextField();
+		name.setSize(200, 30);
 		password = new javax.swing.JPasswordField();
+		password.setSize(200, 30);
 		loginButton = new javax.swing.JButton();
 		jButton2 = new javax.swing.JButton();
 		jLabel3 = new javax.swing.JLabel();
@@ -44,9 +48,9 @@ public class loginjframe extends javax.swing.JFrame {
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		setAlwaysOnTop(true);
 
-		jLabel1.setText("\u7528\u6237\u540d");
+		jLabel1.setText("Username");
 
-		jLabel2.setText("\u5bc6\u7801");
+		jLabel2.setText("Password");
 
 		password.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -54,24 +58,24 @@ public class loginjframe extends javax.swing.JFrame {
 			}
 		});
 
-		loginButton.setText("\u767b\u5f55");
+		loginButton.setText("Login");
 		loginButton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				loginButtonActionPerformed(evt);
 			}
 		});
 
-		jButton2.setText("\u53d6\u6d88");
+		jButton2.setText("Cancel");
 		jButton2.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jButton2ActionPerformed(evt);
 			}
 		});
 		this.setLocation(420, 200);
-		jLabel3
-				.setText("\u6b22\u8fce\u767b\u5f55\u533b\u9662\u7ba1\u7406\u7cfb\u7edf");
+		jLabel3.setText("Hospital Manage System");
+		jLabel3.setFont(new Font( "Myriad", 0, 18));
 
-		jLabel4.setText("\u7528\u6237\u7c7b\u578b");
+		jLabel4.setText("User Role");
 
 		power.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
 				"管理员", "普通用户" }));
@@ -115,12 +119,12 @@ public class loginjframe extends javax.swing.JFrame {
 														.addComponent(
 																password,
 																javax.swing.GroupLayout.PREFERRED_SIZE,
-																154,
+																155,
 																javax.swing.GroupLayout.PREFERRED_SIZE)
 														.addComponent(
 																power,
 																javax.swing.GroupLayout.PREFERRED_SIZE,
-																102,
+																155,
 																javax.swing.GroupLayout.PREFERRED_SIZE))
 										.addContainerGap(47, Short.MAX_VALUE))
 						.addGroup(
@@ -210,7 +214,7 @@ public class loginjframe extends javax.swing.JFrame {
 			f.setVisible(true);
 			this.dispose();
 		} else if (a == null) {
-			JOptionPane.showMessageDialog(this, "账户名或密码错误，登录失败");
+			JOptionPane.showMessageDialog(this, "Login Failed: wrong username or password!");
 		}
 	}
 

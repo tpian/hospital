@@ -8,7 +8,6 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import com.dto.Title;
-import com.model.DrugModel;
 import com.model.TableModel;
 
 

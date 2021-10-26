@@ -27,7 +27,7 @@ public class MyJFrame extends JFrame implements ActionListener {
 	private Admin admin;
 
 	MyJFrame(Admin admin) {
-		super("医院信息管理系统");
+		super("Hospital Manage System");
 		this.setBounds(180, 80, 1000, 650);
 		this.admin = admin;
 		desktop = new JDesktopPane();
@@ -37,14 +37,14 @@ public class MyJFrame extends JFrame implements ActionListener {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {
 		}
-		String[] menustr = { "Employee Manage ", "Patient Manage ",  "Bed Manage ", "User Permission Manage" };
+		String[] menustr = { "Employer Manage ", "Patient Manage ",  "Bed Manage ", "User Permission Manage" };
 		menu = new JMenu[menustr.length];
 		for (int i = 0; i < menustr.length; i++) {
 			menu[i] = new JMenu(menustr[i]);
 			menubar.add(menu[i]);
 		}
 
-		String[] itemstr = { "All Employees", "All Patients", "All Beds", "Update User" };
+		String[] itemstr = { "All Employers", "All Patients", "All Beds", "Update User" };
 		JMenuItem[] menuitems = new JMenuItem[itemstr.length];
 		for (int i = 0; i < itemstr.length; i++) {
 			menuitems[i] = new JMenuItem(itemstr[i]);
@@ -64,11 +64,11 @@ public class MyJFrame extends JFrame implements ActionListener {
 		menu[2].add(menuitemBed);
 		menuitemBed.addActionListener(this);
 		
-		JMenuItem menuitem2 = new JMenuItem("Query Employee");
+		JMenuItem menuitem2 = new JMenuItem("Query Employer");
 		menu[0].add(menuitem2);
 		menuitem2.addActionListener(this);
 		
-		String[] itemstr2 = { "Manage Employee", "Manage Patient","Manage Bed", "Manage Permission" };
+		String[] itemstr2 = { "Manage Employer", "Manage Patient","Manage Bed", "Manage Permission" };
 		JMenuItem[] menuitems2 = new JMenuItem[itemstr2.length];
 		for (int i = 0; i < itemstr2.length; i++) {
 			menuitems2[i] = new JMenuItem(itemstr2[i]);
@@ -94,7 +94,7 @@ public class MyJFrame extends JFrame implements ActionListener {
 	// }
 
 	public void actionPerformed(ActionEvent e) {
-		if (e.getActionCommand() == "All Employees") {
+		if (e.getActionCommand() == "All Employers") {
 			desktop.removeAll();
 			EmployerTableFrame tableframe = new EmployerTableFrame();
 			desktop.add(tableframe);
@@ -112,7 +112,7 @@ public class MyJFrame extends JFrame implements ActionListener {
 			desktop.add(tableframe);
 			tableframe.setVisible(true);
 		}
-		if (e.getActionCommand() == "Manage Employee") {
+		if (e.getActionCommand() == "Manage Employer") {
 			ManageEmployer addpatient = new ManageEmployer(desktop);
 			desktop.add(addpatient).setVisible(true);
 			try {
@@ -160,7 +160,7 @@ public class MyJFrame extends JFrame implements ActionListener {
 			} catch (PropertyVetoException pe) {
 			}
 		}
-		if (e.getActionCommand() == "User Permission Manage") {
+		if (e.getActionCommand() == "Manage Permission") {
 			ManageAdmin manage = new ManageAdmin();
 			desktop.add(manage).setVisible(true);
 			try {
@@ -168,7 +168,7 @@ public class MyJFrame extends JFrame implements ActionListener {
 			} catch (PropertyVetoException pe) {
 			}
 		}		
-		if (e.getActionCommand() == "Query Employee") {
+		if (e.getActionCommand() == "Query Employer") {
 			SearchEmployer search = new SearchEmployer();
 			desktop.add(search).setVisible(true);
 			try {

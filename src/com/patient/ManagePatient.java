@@ -6,6 +6,8 @@
 
 package com.patient;
 
+import java.awt.Font;
+
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JDesktopPane;
@@ -29,6 +31,7 @@ public class ManagePatient extends javax.swing.JInternalFrame {
 
 	/** Creates new form ManagePatient */
 	public ManagePatient(JDesktopPane desktop) {
+		super("Manage Patient",true,true,true,true);
 		this.desktop = desktop;
 		initComponents();
 	}
@@ -71,6 +74,7 @@ public class ManagePatient extends javax.swing.JInternalFrame {
 		section = new javax.swing.JComboBox();
 
 		jLabel1.setText("Patient Infomation Manage");//БъЬт
+		jLabel1.setFont(new Font( "Myriad", 0, 18));
 
 		jLabel2.setText("Name");
 

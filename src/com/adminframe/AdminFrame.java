@@ -6,6 +6,8 @@
 
 package com.adminframe;
 
+import java.awt.Font;
+
 import javax.swing.JOptionPane;
 
 import com.dto.Admin;
@@ -44,30 +46,30 @@ public class AdminFrame extends javax.swing.JInternalFrame {
 		jLabel5 = new javax.swing.JLabel();
 		password = new javax.swing.JPasswordField();
 
-		jLabel1.setFont(new java.awt.Font("隶书", 0, 24));
-		jLabel1.setText("请在下方修改您的信息");
+		jLabel1.setFont(new Font( "Myriad", 0, 18));
+		jLabel1.setText("Please update your information below");
 
-		jLabel2.setText("\u7528\u6237\u540d");
+		jLabel2.setText("Username");
 
-		jLabel3.setText("\u8bbe\u7f6e\u65b0\u5bc6\u7801");
+		jLabel3.setText("New Password");
 
-		jLabel4.setText("\u786e\u8ba4\u5bc6\u7801");
+		jLabel4.setText("Confirm Password");
 
-		jButton1.setText("\u786e\u8ba4");
+		jButton1.setText("Update");
 		jButton1.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jButton1ActionPerformed(evt);
 			}
 		});
 
-		jButton2.setText("\u53d6\u6d88");
+		jButton2.setText("Cancel");
 		jButton2.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jButton2ActionPerformed(evt);
 			}
 		});
 
-		jLabel5.setText("\u539f\u5bc6\u7801");
+		jLabel5.setText("Original Password");
 
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(
 				getContentPane());
@@ -203,7 +205,7 @@ public class AdminFrame extends javax.swing.JInternalFrame {
 //修改密码
 	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
 		if(password1.getText().equals("")||password.getText().equals("")){
-			JOptionPane.showMessageDialog(this, "设置的密码不能为空");
+			JOptionPane.showMessageDialog(this, "Password cannot be blank!");
 			return;
 		}
 		Admin a = new Admin();
@@ -218,17 +220,17 @@ public class AdminFrame extends javax.swing.JInternalFrame {
 				a.setPassword(password2.getText());
 				boolean f = adminmodel.uptAdmin(a, a.getId());
 				if(f){
-					JOptionPane.showMessageDialog(this, "密码修改成功");
+					JOptionPane.showMessageDialog(this, "Password Update Succeed!");
 					this.dispose();
 				}else{
-					JOptionPane.showMessageDialog(this, "密码修改失败");
+					JOptionPane.showMessageDialog(this, "Password Update Failed!");
 				}
 			}
 			else{
-				JOptionPane.showMessageDialog(this, "您的新密码 不一致");
+				JOptionPane.showMessageDialog(this, "Please check whether your password is the same!");
 			}
 		}else{
-			JOptionPane.showMessageDialog(this, "您的密码不正确");
+			JOptionPane.showMessageDialog(this, "Your password is not correct!");
 			return;
 		}
 	}

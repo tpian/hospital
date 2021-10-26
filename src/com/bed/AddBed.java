@@ -1,5 +1,6 @@
 package com.bed;
 
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -44,7 +45,8 @@ public class AddBed extends JInternalFrame{
 	private void initComponents() {
 		com = new ComboModel();
 		
-		titleLabel = new JLabel("Manage Bed");
+		titleLabel = new JLabel("Add Bed");
+		titleLabel.setFont(new Font( "Myriad", 0, 18));
 		roomLabel = new JLabel("Room");
 		bedLabel = new JLabel("Bed");
 		infoBox = new JPanel();
